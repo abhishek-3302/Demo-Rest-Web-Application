@@ -27,7 +27,7 @@ public class ServiceUserImpl implements UserService {
     }
 
     @Override
-    public Users findUsersById(int id) {
+    public Users findUsersById(String id) {
         Optional<Users> FoundUser = this.repository.findById(id);
         if(FoundUser.isPresent())
         {
@@ -39,8 +39,7 @@ public class ServiceUserImpl implements UserService {
     }
 
     @Override
-    public void deleteUsersById(int id) {
-//        repository.deleteById(id);
+    public void deleteUsersById(String id) {
         Optional<Users> deletedUser = this.repository.findById(id);
         if(deletedUser.isPresent())
         {

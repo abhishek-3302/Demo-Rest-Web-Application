@@ -10,28 +10,34 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "Users")
 public class Users {
 
-    @Id
-    Integer id;
+    @Id String id;
+//    Integer id;
     String firstname;
     String lastname;
     String email;
     String password;
 
-    public Users(Integer id, String firstname, String lastname, String email, String password) {
-        this.id = id;
+    public Users( String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public String getFirstname() {
         return firstname;
@@ -65,4 +71,14 @@ public class Users {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id='" + id + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
