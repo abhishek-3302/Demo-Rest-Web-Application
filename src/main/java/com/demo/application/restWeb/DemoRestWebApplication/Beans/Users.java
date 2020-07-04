@@ -6,7 +6,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
+import org.springframework.stereotype.Component;
+@Component
 @Document(collection = "Users")
 public class Users {
 
@@ -17,7 +18,10 @@ public class Users {
     String email;
     String password;
 
-    public Users( String firstname, String lastname, String email, String password) {
+    public Users() {
+    }
+
+    public Users(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -31,13 +35,6 @@ public class Users {
     public void setId(String id) {
         this.id = id;
     }
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
 
     public String getFirstname() {
         return firstname;
