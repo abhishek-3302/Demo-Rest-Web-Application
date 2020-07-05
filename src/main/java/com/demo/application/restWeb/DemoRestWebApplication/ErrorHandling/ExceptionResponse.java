@@ -2,7 +2,7 @@ package com.demo.application.restWeb.DemoRestWebApplication.ErrorHandling;
 
 import java.util.Date;
 
-public class ExceptionResponse {
+public class ExceptionResponse extends RuntimeException{
     Date timestamp;
     String message;
     String Details;
