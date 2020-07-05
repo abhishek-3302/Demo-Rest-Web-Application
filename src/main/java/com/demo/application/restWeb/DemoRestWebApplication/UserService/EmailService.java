@@ -23,6 +23,7 @@ public class EmailService {
         mail.setTo(user.getEmail());
         mail.setSubject("Test mail API");
         mail.setText("Testing mail sent");
+
         javaMailSender.send(mail);
 
     }

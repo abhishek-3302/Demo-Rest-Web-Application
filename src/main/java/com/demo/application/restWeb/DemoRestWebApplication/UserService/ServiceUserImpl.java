@@ -1,6 +1,7 @@
 package com.demo.application.restWeb.DemoRestWebApplication.UserService;
 
 import com.demo.application.restWeb.DemoRestWebApplication.Beans.Users;
+import com.demo.application.restWeb.DemoRestWebApplication.ErrorHandling.BadRequestException;
 import com.demo.application.restWeb.DemoRestWebApplication.ErrorHandling.UserNotFoundException;
 import com.demo.application.restWeb.DemoRestWebApplication.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +67,9 @@ public class ServiceUserImpl implements UserService {
             throw new UserNotFoundException("User not found with id : " + UpdatedUser.getId());
         }
     }
-}
+
+    @Override
+    public List<Users> findByFirstName(String firstname) {
+        return this.repository.findByFirstName(firstname);
+        }
+    }
