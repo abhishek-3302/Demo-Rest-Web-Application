@@ -1,9 +1,11 @@
 package com.demo.application.restWeb.DemoRestWebApplication;
 
+import com.demo.application.restWeb.DemoRestWebApplication.Beans.Email;
+import com.demo.application.restWeb.DemoRestWebApplication.Beans.EmailResponse;
 import com.demo.application.restWeb.DemoRestWebApplication.Beans.Response;
 import com.demo.application.restWeb.DemoRestWebApplication.Beans.Users;
 import com.demo.application.restWeb.DemoRestWebApplication.ErrorHandling.BadRequestException;
-import com.demo.application.restWeb.DemoRestWebApplication.UserService.EmailService;
+import com.demo.application.restWeb.DemoRestWebApplication.UserService.EService;
 import com.demo.application.restWeb.DemoRestWebApplication.UserService.FileStorageService;
 import com.demo.application.restWeb.DemoRestWebApplication.UserService.UserService;
 import org.slf4j.Logger;
@@ -13,7 +15,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,7 +32,7 @@ public class UserController {
     UserService service;
 
     @Autowired
-    private EmailService emailService;
+    private EService eService;
 
     @Autowired
     private Users user;
@@ -87,17 +88,10 @@ public class UserController {
 
     }
 
-
-    @RequestMapping("/Send-mail")
-    public String sendmail()
+    @PostMapping("/sendMail")
+    public EmailResponse SendMail(@RequestBody Email email)
     {
-        user.setEmail("ab.7892649170@gmail.com");
-        try {
-            emailService.sendMail(user);
-        } catch (MailException mailException) {
-            System.out.println(mailException);
-        }
-        return "Congratulations! Your mail has been send to the user.";
+        return eService.sendMail(email);
     }
 
     @PostMapping("/uploadFile")
